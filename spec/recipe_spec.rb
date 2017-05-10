@@ -11,7 +11,7 @@ describe(Recipe) do
     end
   end
 
-  describe("#categories") do
+  describe("#ingredients") do
     it("lists the ingredients that a recipe uses") do
       test_ingredient = Ingredient.create({:name => "chocolate"})
       test_recipe = Recipe.create({:name => "Chocolate Cake", :description => "A delicious dessert perfect for a party setting", :instruction => "lorem ipsum edus co lors", :rating => 4})

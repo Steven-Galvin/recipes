@@ -1,0 +1,19 @@
+<h3>Add ingredients below:</h3>
+
+<form action="/ingredients/add" method="post">
+  <label for="ingredient_name">Ingredient Name:</label>
+  <input name="ingredient_name" type="text">
+
+  <button type="submit" class="btn">Add Ingredient</button>
+</form>
+
+<% if @ingredients.any?() %>
+  <h3>Here are all the ingredients you've made:</h3>
+
+  <ul>
+    <% @ingredients.each() do |ingredient| %>
+    <li><a href="/ingredients/<%= ingredient.id %>"><%= ingredient.name %></a></li>
+  <% end %>
+  </ul>
+
+<% end %>

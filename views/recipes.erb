@@ -1,0 +1,17 @@
+<h2>Recipe</h2>
+
+<% if @recipes.any?() %>
+  <h3>Here are all the recipes you've made:</h3>
+
+  <ul>
+    <% @recipes.each() do |recipe| %>
+    <li><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></li>
+  <% end %>
+  </ul>
+
+  <p>Click <a href="/recipes/add">here</a> to make some more recipes!</p>
+
+<% else %>
+  <p>You haven't made any recipes yet!</p>
+  <p>Click <a href="/recipes/add">here</a> to make some recipes!</p>
+<% end %>

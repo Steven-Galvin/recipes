@@ -1,0 +1,17 @@
+<h2>Categories</h2>
+
+<% if @categories.any?() %>
+  <h3>Here are all the categories you've made:</h3>
+
+  <ul>
+    <% @categories.each() do |category| %>
+    <li><a href="/categories/<%= category.id %>"><%= category.name %></a></li>
+  <% end %>
+  </ul>
+
+  <p>Click <a href="/categories/add">here</a> to make some more categories!</p>
+
+<% else %>
+  <p>You haven't made any categories yet!</p>
+  <p>Click <a href="/categories/add">here</a> to make some categories!</p>
+<% end %>

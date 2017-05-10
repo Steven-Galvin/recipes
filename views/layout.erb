@@ -3,17 +3,48 @@
   <head>
     <title>Recipes</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
-    <link  rel='stylesheet' href="/css/styles.css" >
+    <link rel='stylesheet' href="/css/styles.css">
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
   </head>
   <body>
     <div class="container">
-      <a href="/">
-        <h1>Recipes</h1>
-      </a>
+      <div class="jumbotron">
+        <a href="/" id="title">
+          <h1>Recipes</h1>
+        </a>
+      </div>
+      <div class="well">
+        <div class="well well-sm" id="test">
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <form action="/recipes" method="get">
+              <button type="submit" class="btn">View Recipes</button>
+            </form>
+          </div>
+          <div class="col-md-3">
+            <form action="/ingredients" method="get">
+              <button type="submit" class="btn">View Ingredients</button>
+            </form>
+          </div>
+          <div class="col-md-3">
+            <form action="/categories" method="get">
+              <button type="submit" class="btn">View Categories</button>
+            </form>
+          </div>
+          <div class="col-md-3">
+            <form action="/search-results" id="search" method="post">
+              <input name="search-term" type="text">
+              <button type="submit" class="btn">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
     <hr>
       <%= yield %>
+      <br>
+      <input class="btn" type="button" value="Back" onclick="history.back(-1)">
     </div>
   </body>
 </html>

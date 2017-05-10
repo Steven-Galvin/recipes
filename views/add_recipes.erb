@@ -1,0 +1,23 @@
+<h3>Add recipes below:</h3>
+
+<form action="/recipes/add" method="post">
+  <label for="recipe_name">Recipe Name:</label>
+  <input name="recipe_name" type="text">
+  <br>
+  <label for="recipe_name">Recipe Description:</label>
+  <br>
+  <textarea name="recipe_description" type="text" placeholder="Pull box to desired size"></textarea>
+  <br>
+  <button type="submit" class="btn">Add Recipe</button>
+</form>
+
+<% if @recipes.any?() %>
+  <h3>Here are all the recipes you've made:</h3>
+
+  <ul>
+    <% @recipes.each() do |recipe| %>
+    <li><a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a></li>
+  <% end %>
+  </ul>
+
+<% end %>
