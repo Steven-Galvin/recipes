@@ -15,15 +15,15 @@ ActiveRecord::Schema.define(version: 20170510181325) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "catagories", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "catagories_recipes", force: :cascade do |t|
-    t.integer "catagories_id"
-    t.integer "recipes_id"
+  create_table "categories_recipes", id: false, force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "recipe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(version: 20170510181325) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "ingredients_recipes", force: :cascade do |t|
-    t.integer "ingredients_id"
-    t.integer "recipes_id"
+  create_table "ingredients_recipes", id: false, force: :cascade do |t|
+    t.bigint "ingredient_id", null: false
+    t.bigint "recipe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20170510181325) do
     t.string "name"
     t.string "description"
     t.integer "rating"
-    t.string "instructions"
+    t.string "instruction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

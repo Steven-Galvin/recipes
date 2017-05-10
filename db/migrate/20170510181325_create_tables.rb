@@ -10,28 +10,22 @@ class CreateTables < ActiveRecord::Migration[5.1]
       t.column(:name, :string)
       t.column(:description, :string)
       t.column(:rating, :integer)
-      t.column(:instructions, :string)
+      t.column(:instruction, :string)
 
       t.timestamps
     end
 
-    create_table(:catagories) do |t|
+    create_table(:categories) do |t|
       t.column(:name, :string)
 
       t.timestamps
     end
 
-    create_table(:ingredients_recipes) do |t|
-      t.column(:ingredients_id, :integer)
-      t.column(:recipes_id, :integer)
-
+    create_join_table(:ingredients, :recipes) do |t|
       t.timestamps
     end
 
-    create_table(:catagories_recipes) do |t|
-      t.column(:catagories_id, :integer)
-      t.column(:recipes_id, :integer)
-
+    create_join_table(:categories, :recipes) do |t|
       t.timestamps
     end
   end

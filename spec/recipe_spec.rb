@@ -1,14 +1,23 @@
 require "spec_helper"
 
-# describe 'Palindrome#isWord?' do
-#   let(:word) { Palindrome.new }
+describe(Recipe) do
+  describe("#categories") do
+    it("lists the categories that a recipe resides in") do
+      test_category = Category.create({:name => "Desserts"})
+      test_recipe = Recipe.create({:name => "Chocolate Cake", :description => "A delicious dessert perfect for a party setting", :instruction => "lorem ipsum edus co lors", :rating => 4})
+      test_recipe.categories.push(test_category)
 
-#   it "returns true if the word has at least one vowel" do
-#     expect(word.is_word?("word")).to eq true
-#   end
+      expect(test_recipe.categories).to(eq([test_category]))
+    end
+  end
 
-#   it "returns false if the word does not have a vowel" do
-#     expect(word.is_word?("wrd")).to eq false
-#   end
+  describe("#categories") do
+    it("lists the ingredients that a recipe uses") do
+      test_ingredient = Ingredient.create({:name => "chocolate"})
+      test_recipe = Recipe.create({:name => "Chocolate Cake", :description => "A delicious dessert perfect for a party setting", :instruction => "lorem ipsum edus co lors", :rating => 4})
+      test_recipe.ingredients.push(test_ingredient)
 
-# end
+      expect(test_recipe.ingredients).to(eq([test_ingredient]))
+    end
+  end
+end
