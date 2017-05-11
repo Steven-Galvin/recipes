@@ -129,6 +129,10 @@ patch "/recipes/:id/updated" do
   recipe_id = params['id'].to_i
   @recipe = Recipe.find(recipe_id)
   name = params['name']
-  @recipe.update({:name => name})
-  redirect "/recipes/#{recipe_id}"
+  if @recipe.update({:name => name})
+    redirect "/recipes/#{recipe_id}"
+  else
+    @recipe.update({:name => "#{@recipe.name}"})
+    redirect "/recipes/#{recipe_id}"
+  end
 end
