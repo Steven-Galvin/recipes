@@ -64,6 +64,27 @@ post "/ingredients/add" do
   redirect "/ingredients/add"
 end
 
+get "/ingredients/:id" do
+  @ingredient = Ingredient.find(params['id'].to_i)
+  erb :ingredient
+end
+
+get '/ingredients/:id/add_recipes' do
+  @ingredient = Ingredient.find(params['id'].to_i)
+  @recipes = Recipe.all
+  erb :add_recipes_to_ingredients
+end
+
+patch "/ingredients/:id" do
+  ingredient_id = params['id'].to_i
+  @ingredient = Ingredient.find(ingredient_id)
+  current_ids = @ingredient.recipes.map(&:id) ##(&:id) = {|e| e.id}
+  recipe_ids = params['recipe_ids']
+  all_recipes = current_ids + recipe_ids
+  @ingredient.update({:recipe_ids => all_recipes})
+  redirect "/ingredients/#{ingredient_id}"
+end
+
 # RECIPE PATH
 
 get "/recipes" do

@@ -1,0 +1,19 @@
+<h3><%= @ingredient.name %></h3>
+
+<% if @ingredient.recipes.any? %>
+  <h4>Here are all the recipes that use <%= @ingredient.name %>:</h4>
+
+  <ul>
+    <% @ingredient.recipes.each do |recipe| %>
+      <li><%= recipe.name %></li>
+    <% end %>
+  </ul>
+
+  <h4>Click <a href="/ingredients/<%= @ingredient.id %>/add_recipes">here</a> to add <%= @ingredient.name %> to more recipes!</h4>
+
+
+<% else %>
+
+  <h4>There are currently no recipes that use <%= @ingredient.name %>, click <a href="/ingredients/<%= @ingredient.id %>/add_recipes">here</a> to add <%= @ingredient.name %> to recipes!</h4>
+
+<% end %>
