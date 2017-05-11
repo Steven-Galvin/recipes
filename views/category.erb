@@ -1,0 +1,13 @@
+<h2><%= @category.name %></h2>
+
+<% if @category.recipes.any? %>
+  <h4>Here are all the recipes in this category:</h4>
+  <ul>
+    <% @category.recipes.each do |recipe| %>
+    <li><%= recipe.name %></li>
+  <% end %>
+  </ul>
+  <h5>If you want to add more recipes, click <a href="/categories/<%= @category.id %>/add_recipes">here</a>!</h5>
+  <% else %>
+  <h5>There are no recipes under this category yet, click <a href="/categories/<%= @category.id %>/add_recipes">here</a> to add some!</h5>
+<% end %>

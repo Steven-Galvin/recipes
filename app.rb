@@ -24,6 +24,28 @@ post "/categories/add" do
   redirect "/categories/add"
 end
 
+get "/categories/:id" do
+  @category = Category.find(params['id'].to_i)
+  erb :category
+end
+
+get "/categories/:id/add_recipes" do
+  @category = Category.find(params['id'].to_i)
+  @recipes = Recipe.all
+  erb :add_recipes_to_category
+end
+
+patch "/categories/:id" do
+  category_id = params['id'].to_i
+  @category = Category.find(category_id)
+  current_ids = @category.recipes.map(&:id) ##(&:id) = {|e| e.id}
+
+  recipe_ids = params['recipe_ids']
+  all_recipes = current_ids + recipe_ids
+  @category.update({:recipe_ids => all_recipes})
+  redirect "/categories/#{category_id}"
+end
+
 # INGREDIENT PATH
 
 get "/ingredients" do
