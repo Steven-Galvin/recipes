@@ -1,6 +1,16 @@
 require "spec_helper"
 
 describe(Recipe) do
+  it { is_expected.to callback(:title_name).before(:save)}
+  it 'capitalizes all words in the name' do
+    recipe = Recipe.create({:name => 'this is a test', :description => "over it"})
+    expect(recipe.name).to(eq('This Is A Test'))
+  end
+  it 'validates presence of name in update' do
+    recipe = Recipe.create name: 'test', description: 'over it'
+    expect(recipe.update(name: ' ', description: ' ')).to(eq(false))
+  end
+
   describe("#categories") do
     it("lists the categories that a recipe resides in") do
       test_category = Category.create({:name => "Desserts"})
@@ -19,11 +29,5 @@ describe(Recipe) do
 
       expect(test_recipe.ingredients).to(eq([test_ingredient]))
     end
-  end
-
-
-  it 'validates presence of name in update' do
-    recipe = Recipe.create({:name => 'test'})
-    expect(recipe.update({:name => ''})).to(eq(false))
   end
 end

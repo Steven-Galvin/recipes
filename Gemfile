@@ -6,6 +6,8 @@ gem "sinatra-activerecord"
 gem "rake"
 gem "pg"
 gem "sinatra"
+gem 'shoulda-matchers'
+gem "shoulda-callback-matchers"
 
 group :test do
   gem "rspec"
