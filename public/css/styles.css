@@ -8,14 +8,26 @@ body {
 
 .well#test {
   background-color: lightgrey;
+  border-color: black;
 }
 
 a#title {
   text-decoration: none;
   color: black;
 }
+
+a#ingredient-btn {
+  text-decoration: none;
+  color: black;
+}
+
 .well {
   background-color: black;
+  border-color: black;
+}
+
+hr {
+  border-color: black;
 }
 
 a:link, a:visited {

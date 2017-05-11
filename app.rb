@@ -82,3 +82,24 @@ post "/recipes/add" do
   @recipe = Recipe.create({:name => recipe_name, :description => recipe_description})
   redirect "/recipes/add"
 end
+
+get "/recipes/:id" do
+  @recipe = Recipe.find(params['id'].to_i)
+  erb :recipe
+end
+
+get '/recipes/:id/add_categories' do
+  @recipe = Recipe.find(params['id'].to_i)
+  @categories = Category.all
+  erb :add_categories_to_recipes
+end
+
+patch "/recipes/:id" do
+  recipe_id = params['id'].to_i
+  @recipe = Recipe.find(recipe_id)
+  current_ids = @recipe.categories.map(&:id) ##(&:id) = {|e| e.id}
+  category_ids = params['category_ids']
+  all_categories = current_ids + category_ids
+  @recipe.update({:category_ids => all_categories})
+  redirect "/recipes/#{recipe_id}"
+end
