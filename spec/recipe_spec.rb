@@ -20,4 +20,10 @@ describe(Recipe) do
       expect(test_recipe.ingredients).to(eq([test_ingredient]))
     end
   end
+
+
+  it 'validates presence of name in update' do
+    recipe = Recipe.create({:name => 'test'})
+    expect(recipe.update({:name => ''})).to(eq(false))
+  end
 end

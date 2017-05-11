@@ -124,3 +124,11 @@ patch "/recipes/:id" do
   @recipe.update({:category_ids => all_categories})
   redirect "/recipes/#{recipe_id}"
 end
+
+patch "/recipes/:id/updated" do
+  recipe_id = params['id'].to_i
+  @recipe = Recipe.find(recipe_id)
+  name = params['name']
+  @recipe.update({:name => name})
+  redirect "/recipes/#{recipe_id}"
+end

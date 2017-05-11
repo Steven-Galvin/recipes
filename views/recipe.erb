@@ -1,13 +1,32 @@
-<h3><%= @recipe.name %></h3>
+<div class='row'>
+  <div class="col-sm-6">
+    <h3><%= @recipe.name %></h3>
 
-<% if @recipe.categories.any? %>
-  <h4>Here are all the categories this recipe is tagged in:</h4>
-  <ul>
-    <% @recipe.categories.each do |category| %>
-    <li><%= category.name %></li>
-  <% end %>
-  </ul>
-  <h5>If you want to add this recipe to more categories, click <a href="/recipes/<%= @recipe.id %>/add_categories">here</a>!</h5>
-  <% else %>
-  <h5>There are no categories under this recipe yet, click <a href="/recipes/<%= @recipe.id %>/add_categories">here</a> to add some!</h5>
-<% end %>
+    <% if @recipe.categories.any? %>
+    <h4>Here are all the categories this recipe is tagged in:</h4>
+    <ul>
+      <% @recipe.categories.each do |category| %>
+      <li><%= category.name %></li>
+      <% end %>
+    </ul>
+    <h5>If you want to add this recipe to more categories, click <a href="/recipes/<%= @recipe.id %>/add_categories">here</a>!</h5>
+    <% else %>
+    <h5>There are no categories under this recipe yet, click <a href="/recipes/<%= @recipe.id %>/add_categories">here</a> to add some!</h5>
+    <% end %>
+  </div>
+
+  <div class="col-sm-6">
+    <form class="" action="/recipes/<%= @recipe.id %>/updated" method="post">
+      <div class="form-group">
+        <input type="hidden" name="_method" value="patch">
+        <label>Edit Recipe Name</label><br>
+        <input type="text" name="name">
+        <button type="submit" class='btn'>Update</button>
+      </div>
+    </form>
+    <form action="/recipes" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button type="submit" class='btn'>Delete Recipe</button>
+    </form>
+  </div>
+</div>
