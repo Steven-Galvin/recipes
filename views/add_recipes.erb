@@ -1,14 +1,14 @@
-
 <div class="row">
   <div class="col-md-6">
     <h3>Add recipes below:</h3>
+    <h4><%= @message %></h4>
     <form action="/recipes/add" method="post">
-      <label for="recipe_name">Recipe Name:</label>
-      <input name="recipe_name" type="text">
+      <label for="recipe[name]">Recipe Name:</label>
+      <input name="recipe[name]" type="text">
       <br>
-      <label for="recipe_name">Recipe Description:</label>
+      <label for="recipe[description]">Recipe Description:</label>
       <br>
-      <textarea name="recipe_description" type="text" placeholder="Pull box to desired size"></textarea>
+      <textarea name="recipe[description]" type="text" placeholder="Pull box to desired size"></textarea>
       <br>
       <button type="submit" class="btn">Add Recipe</button>
     </form>

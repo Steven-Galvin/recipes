@@ -1,7 +1,7 @@
 require "bundler/setup"
 Bundler.require :default
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
-
+require 'pry'
 get "/" do
   erb :index
 end
@@ -98,10 +98,15 @@ get "/recipes/add" do
 end
 
 post "/recipes/add" do
-  recipe_name = params["recipe_name"]
-  recipe_description = params["description"]
-  @recipe = Recipe.create({:name => recipe_name, :description => recipe_description})
-  redirect "/recipes/add"
+  @recipes = Recipe.all
+  data = params["recipe"]
+  recipe = Recipe.new(data)
+  if recipe.save
+    @message = "Recipe added successfully!"
+  else
+    @message = "Please enter a name and description."
+  end
+  erb :add_recipes
 end
 
 get "/recipes/:id" do
